@@ -70,8 +70,13 @@ export function MessageInput({
     const input = document.createElement('input');
     input.type = 'file';
     input.accept = accept;
+    input.onchange = () => {
+      // In a real implementation, you would handle the file upload here
+      input.remove(); // Clean up the input element after use
+    };
+    // Also remove if user cancels the file picker
+    input.addEventListener('cancel', () => input.remove());
     input.click();
-    // In a real implementation, you would handle the file upload here
   };
 
   const hasText = text.trim().length > 0;
@@ -121,6 +126,8 @@ export function MessageInput({
               showAttachMenu ? 'bg-gray-100' : 'hover:bg-gray-100'
             )}
             aria-label="Add attachment"
+            aria-expanded={showAttachMenu}
+            aria-haspopup="menu"
           >
             <Plus
               className={cn(
@@ -132,11 +139,16 @@ export function MessageInput({
 
           {/* Attachment Menu */}
           {showAttachMenu && (
-            <div className="absolute bottom-full left-0 mb-2 bg-white rounded-lg shadow-lg border border-gray-200 py-1 min-w-[160px]">
+            <div 
+              role="menu"
+              aria-label="Attachment options"
+              className="absolute bottom-full left-0 mb-2 bg-white rounded-lg shadow-lg border border-gray-200 py-1 min-w-[160px]"
+            >
               {ATTACHMENT_OPTIONS.map(({ icon: Icon, label, accept }) => (
                 <button
                   key={label}
                   type="button"
+                  role="menuitem"
                   onClick={() => handleAttachmentClick(accept)}
                   className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
                 >
