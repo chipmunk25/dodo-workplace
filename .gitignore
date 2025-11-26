@@ -1,26 +1,30 @@
-# Dependencies
 node_modules/
-
-# Build outputs
 dist/
-dist-electron/
-
-# IDE
-.vscode/
-.idea/
-
-# System files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-npm-debug.log*
-
-# Environment files
 .env
-.env.local
-.env.*.local
+.DS_Store
+.vscode/
+coverage/
+npm-debug.log*
+yarn-error.log*
+.idea/
+*.log
+*.swp
+*.swo
+*.bak
+*.tmp
+*.old
+*.orig
+*.rej
+build/
+# MacOS specific
+.AppleDouble
+.LSOverride     
+# Thumbnails
 
-# TypeScript build info
-*.tsbuildinfo
+._*
+.Trashes
+.Spotlight-V100
+.DocumentRevisions-V100
+.fseventsd
+.VolumeIcon.icns
+
